@@ -1,0 +1,14 @@
+This folder is including 
+[1] 4bit comparator "ic 7485"
+[2] 8bit comparator using 4bit comparator
+[3] test bench for 8bit comaparator using 4bit comparator
+
+The disgn of "ic 7485" is 
+
+          ______________
+a[4:0] ---|            |
+          |            |--- l 
+b[4:0] ---|   ic 7485  |--- g 
+in_l------|            |--- e 
+in_g------|            |
+in_e------|____________|
