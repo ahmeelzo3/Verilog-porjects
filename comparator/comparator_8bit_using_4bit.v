@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 
-module comparator_8bit_usin_4bit(
+module comparator_8bit_using_4bit(
         input [7:0] a , b ,
         input en ,
         output e , l , g  
