@@ -1,0 +1,88 @@
+🚦 Smart Traffic Light Controller (Verilog FPGA)
+
+A robust and synthesizable implementation of a smart Traffic Light Control System using Verilog HDL. The system is designed using a Finite State Machine (FSM) coupled with a flexible N-bit timer module. It handles traffic flow based on sensor inputs and timing constraints, ensuring safety and efficiency.
+
+✨ Features
+
+Intelligent Control: Automatically switches priority between two roads (Road A and Road B) based on sensor detection.
+
+FSM Architecture: Clean separation of Sequential Logic, Next-State Logic, and Output Logic (Moore Machine) to prevent latches and glitches.
+
+Modular Design:
+
+fsm_controller.v: The brain of the system.
+
+timer_nbit.v: A configurable N-bit timer for precise timing delays.
+
+traffic_light_controller.v: The top-level module integrating both components.
+
+Robust Simulation: Verified using a comprehensive Testbench (tb_traffic_light_system.v) that covers all operational states and edge cases.
+
+Latch-Free Design: Carefully coded to ensure all logic paths are defined, preventing unwanted latches during synthesis.
+
+🛠️ System Architecture
+
+The system consists of two main modules:
+
+FSM Controller:
+
+Monitors sensor inputs (s_a, s_b) and the timer status (timer_done).
+
+Controls the traffic lights (Ga, Ya, Ra, Gb, Yb, Rb).
+
+Sets the t_max value for the timer depending on the current state (e.g., 60s for Green, 5s for Yellow).
+
+N-bit Timer:
+
+A generic counter that counts up to a specific t_max.
+
+Signals the FSM when the time is up.
+
+📂 File Structure
+
+├── RTL
+│   ├── traffic_light_controller.v  # Top-Level Module
+│   ├── fsm_controller.v            # Finite State Machine Logic
+│   └── timer_nbit.v                # Generic Timer Module
+├── Simulation
+│   └── tb_traffic_light_system.v   # Testbench for simulation
+└── README.md
+
+
+🚀 How to Run
+
+Prerequisites
+
+Xilinx Vivado, ModelSim, or any Verilog simulator.
+
+Simulation Steps (Vivado)
+
+Create a new project in Vivado.
+
+Add the source files (.v) from the RTL folder.
+
+Add the testbench file (tb_traffic_light_system.v) as a simulation source.
+
+Set tb_traffic_light_system as the top module.
+
+Run Behavioral Simulation.
+
+Observe the waveforms for Ga, Ra, t, and other signals.
+
+📊 Logic Flow (State Diagram)
+
+s0: Road A Green, Road B Red (Default). Waits for timer or Sensor B.
+
+s1: Road A Yellow, Road B Red.
+
+s2: Road A Red, Road B Green.
+
+s3: Decision State (Check sensors).
+
+s4: Extend Green B if traffic exists only on B.
+
+s5: Road A Red, Road B Yellow (Transition back to A).
+
+📝 License
+
+This project is open-source and available under the MIT License.
